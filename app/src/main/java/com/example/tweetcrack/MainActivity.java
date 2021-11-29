@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(MainActivity.this);
         final TextView textView = (TextView) findViewById(R.id.text);
+
+        Tweet h = new Tweet(queue);
+        String temp = h.GetTweet("pmarinelli18");
+
 // ...
 
 
