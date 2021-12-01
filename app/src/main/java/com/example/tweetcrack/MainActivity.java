@@ -43,6 +43,7 @@ class MyRunnable implements Runnable {
 
     OAuthConsumer consumer;
     OAuthProvider provider;
+
     private String pin = "-1";
     private int var;
     private volatile String authUrl;
@@ -130,10 +131,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(MainActivity.this);
-        final TextView textView = (TextView) findViewById(R.id.text);
+        final TextView textView = (TextView) findViewById(R.id.textView);
 
         Tweet h = new Tweet(queue);
-        String temp = h.GetTweet("pmarinelli18");
+        String temp = h.GetTweet("twitter", textView);
+//        try {
+//            Thread.sleep(10000);
+//        } catch (Exception e) {}
+//        try {
+//            wait(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        textView.setText(temp);
 
 // ...
 
