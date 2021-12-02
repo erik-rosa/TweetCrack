@@ -21,7 +21,6 @@ import java.util.Map;
 import static com.example.tweetcrack.Hidden.ACCESS_TOKEN;
 import static com.example.tweetcrack.Hidden.BEARER_TOKEN;
 import static com.example.tweetcrack.Hidden.JTWITTER_OAUTH_KEY;
-import static com.example.tweetcrack.Hidden.TEXT;
 
 
 public class Tweet {
@@ -30,7 +29,6 @@ public class Tweet {
     Boolean isRunning = false;
     public Tweet(RequestQueue q) {
         queue = q;
-
     }
 
     public String GetTweet(String userName, TextView textView) {
@@ -55,7 +53,6 @@ public class Tweet {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            TEXT = rtnString;
                             isRunning = false;
                         }
                     }, new Response.ErrorListener() {
