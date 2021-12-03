@@ -47,12 +47,15 @@ class MyRunnable implements Runnable {
     private String pin = "-1";
     private int var;
     private volatile String authUrl;
-    public String getString(){
+
+    public String getString() {
         return authUrl;
     }
-    public void setPin(String p){
+
+    public void setPin(String p) {
         pin = p;
     }
+
     public MyRunnable(int var) {
         this.var = var;
     }
@@ -90,7 +93,8 @@ class MyRunnable implements Runnable {
         }
 
     }
-    public void getCode(){
+
+    public void getCode() {
         String pinCode = pin;// ... you have to ask this from the user, or obtain it
         // from the callback if you didn't do an out of band request
 
@@ -123,9 +127,11 @@ class MyRunnable implements Runnable {
 
     }
 }
+
 public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
     MyRunnable myRunnable = new MyRunnable(10);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView = (TextView) findViewById(R.id.textView);
 
         Tweet h = new Tweet(queue);
-        String temp = h.GetTweet("twitter", textView);
+        //String temp = h.GetTweet("twitter", textView);
 //        try {
 //            Thread.sleep(10000);
 //        } catch (Exception e) {}
@@ -151,11 +157,13 @@ public class MainActivity extends AppCompatActivity {
         Thread t = new Thread(myRunnable);
         t.start();
     }
-    public void quickPlayClick(View view){
-        Intent my_intent = new Intent(getBaseContext(),Home.class);
+
+    public void quickPlayClick(View view) {
+        Intent my_intent = new Intent(getBaseContext(), Home.class);
         startActivity(my_intent);
     }
-    public void twitterLoginClick(View view){
+
+    public void twitterLoginClick(View view) {
         Button button = findViewById(R.id.twitterLogin);
         button.setVisibility(View.GONE);
 
@@ -173,7 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-    public void click2(View view){
+
+    public void click2(View view) {
         EditText editText = findViewById(R.id.editTextTextPersonName);
         myRunnable.setPin(editText.getText().toString());
         new Thread(() -> {
@@ -189,10 +198,10 @@ public class MainActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
 
                 }
-            }){
+            }) {
                 @Override
-                protected Map<String,String> getParams(){
-                    Map<String,String> params = new HashMap<String, String>();
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
                     params.put("oauth_consumer_key", JTWITTER_OAUTH_KEY);
                     params.put("oauth_token", ACCESS_TOKEN);
                     params.put("oauth_verifier", editText.getText().toString());
@@ -202,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<String, String>();
-                    params.put("Content-Type","application/x-www-form-urlencoded");
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/x-www-form-urlencoded");
                     return params;
                 }
             };

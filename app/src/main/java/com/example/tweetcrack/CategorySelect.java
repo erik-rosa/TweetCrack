@@ -16,6 +16,12 @@ public class CategorySelect extends AppCompatActivity {
 
     public void onSportsPressed(View view) {
         Intent my_intent = new Intent(getBaseContext(),GameScreen.class);
+        my_intent.putExtra("category","NBAplayers/NBA-players");
+        startActivity(my_intent);
+    }
+    public void onWorldNewsPressed(View view) {
+        Intent my_intent = new Intent(getBaseContext(),GameScreen.class);
+        my_intent.putExtra("category","palafo/World-News-List");
         startActivity(my_intent);
     }
 
