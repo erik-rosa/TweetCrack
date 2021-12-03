@@ -36,7 +36,6 @@ public class Tweet {
 
     public Tweet(RequestQueue q) {
         queue = q;
-
     }
 
     public String GetTweet(String userName, TextView textView) {
@@ -62,7 +61,6 @@ public class Tweet {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                             isRunning = false;
                         }
                     }, new Response.ErrorListener() {
