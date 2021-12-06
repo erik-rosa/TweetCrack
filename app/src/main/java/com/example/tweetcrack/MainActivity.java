@@ -40,102 +40,13 @@ import static com.example.tweetcrack.Hidden.ACCESS_TOKEN;
 import static com.example.tweetcrack.Hidden.TOKEN_SECRET;
 import static com.example.tweetcrack.Hidden.USER;
 
-class MyRunnable implements Runnable {
 
-    OAuthConsumer consumer;
-    OAuthProvider provider;
-
-    private String pin = "-1";
-    private int var;
-    private volatile String authUrl;
-
-    public String getString() {
-        return authUrl;
-    }
-
-    public void setPin(String p) {
-        pin = p;
-    }
-
-    public MyRunnable(int var) {
-        this.var = var;
-    }
-
-    public void run() {
-        consumer = new DefaultOAuthConsumer(
-                // the consumer key of this app (replace this with yours)
-                JTWITTER_OAUTH_KEY,
-                // the consumer secret of this app (replace this with yours)
-                JTWITTER_OAUTH_SECRET);
-
-        provider = new DefaultOAuthProvider(
-                "https://api.twitter.com/oauth/request_token",
-                "https://api.twitter.com/oauth/access_token",
-                "https://api.twitter.com/oauth/authorize");
-
-
-        /****************************************************
-         * The following steps should only be performed ONCE
-         ***************************************************/
-
-        // we do not support callbacks, thus pass OOB
-        try {
-            authUrl = provider.retrieveRequestToken(consumer, OAuth.OUT_OF_BAND);
-            Log.d("h", "H");
-
-        } catch (OAuthMessageSignerException e) {
-            e.printStackTrace();
-        } catch (OAuthNotAuthorizedException e) {
-            e.printStackTrace();
-        } catch (OAuthExpectationFailedException e) {
-            e.printStackTrace();
-        } catch (OAuthCommunicationException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void getCode() {
-        String pinCode = pin;// ... you have to ask this from the user, or obtain it
-        // from the callback if you didn't do an out of band request
-
-        // user must have granted authorization at this point
-        ACCESS_TOKEN = consumer.getToken();
-        TOKEN_SECRET = consumer.getTokenSecret();
-//        try {
-//            provider.retrieveAccessToken(consumer, pinCode);
-//        } catch (OAuthMessageSignerException e) {
-//            e.printStackTrace();
-//        } catch (OAuthNotAuthorizedException e) {
-//            e.printStackTrace();
-//        } catch (OAuthExpectationFailedException e) {
-//            e.printStackTrace();
-//        } catch (OAuthCommunicationException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//
-//
-//
-//
-//        oauth.signpost.http.HttpParameters hi  = consumer.getRequestParameters();
-//        String test = consumer.getConsumerKey();
-//        ACCESS_TOKEN = consumer.getToken();
-//        TOKEN_SECRET = consumer.getTokenSecret();
-//        Log.d("tes", ACCESS_TOKEN);
-
-    }
-}
 
 public class MainActivity extends AppCompatActivity {
-    RequestQueue queue;
-    MyRunnable myRunnable = new MyRunnable(10);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        GlobalVariables.myRunnable = new MyRunnable(10);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -143,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
         GlobalVariables.gameState =  new Game(mPrefs);
 
 
-        queue = Volley.newRequestQueue(MainActivity.this);
+        GlobalVariables.loggedIn = false;
+        GlobalVariables.queue = Volley.newRequestQueue(MainActivity.this);
         final TextView textView = (TextView) findViewById(R.id.textView);
 
-        Tweet h = new Tweet(queue);
+        Tweet h = new Tweet(GlobalVariables.queue);
         //String temp = h.GetTweet("twitter", textView);
 //        try {
 //            Thread.sleep(10000);
@@ -161,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 // ...
 
 
-        Thread t = new Thread(myRunnable);
+        Thread t = new Thread(GlobalVariables.myRunnable);
         t.start();
     }
 
@@ -171,62 +83,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void twitterLoginClick(View view) {
-        Button button = findViewById(R.id.twitterLogin);
-        button.setVisibility(View.GONE);
+//        Button button = findViewById(R.id.twitterLogin);
+//        button.setVisibility(View.GONE);
+//
+//        Button button2 = findViewById(R.id.QuickPlay);
+//        button2.setVisibility(View.GONE);
+//
+//        Button button3 = findViewById(R.id.submitButton);
+//        button3.setVisibility(View.VISIBLE);
+//
+//        EditText editText = findViewById(R.id.editTextTextPersonName);
+//        editText.setVisibility(View.VISIBLE);
 
-        Button button2 = findViewById(R.id.QuickPlay);
-        button2.setVisibility(View.GONE);
-
-        Button button3 = findViewById(R.id.submitButton);
-        button3.setVisibility(View.VISIBLE);
-
-        EditText editText = findViewById(R.id.editTextTextPersonName);
-        editText.setVisibility(View.VISIBLE);
-
-        Uri uri = Uri.parse(myRunnable.getString()); // missing 'http://' will cause crashed
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-
+        Intent intent = new Intent(MainActivity.this, TwitterLogin.class);
         startActivity(intent);
+
+        Uri uri = Uri.parse(GlobalVariables.myRunnable.getString()); // missing 'http://' will cause crashed
+        Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent2);
     }
 
-    public void click2(View view) {
-        EditText editText = findViewById(R.id.editTextTextPersonName);
-        myRunnable.setPin(editText.getText().toString());
-        new Thread(() -> {
-            myRunnable.getCode();
 
-            StringRequest sr = new StringRequest(Request.Method.POST, "https://api.twitter.com/oauth/access_token?", new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    USER = response;
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("oauth_consumer_key", JTWITTER_OAUTH_KEY);
-                    params.put("oauth_token", ACCESS_TOKEN);
-                    params.put("oauth_verifier", editText.getText().toString());
-
-                    return params;
-                }
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("Content-Type", "application/x-www-form-urlencoded");
-                    return params;
-                }
-            };
-            queue.add(sr);
-        }).start();
-
-        Intent intent = new Intent(this, Home.class);
-        startActivity(intent);
-    }
 }
