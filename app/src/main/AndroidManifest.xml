@@ -11,6 +11,9 @@
         android:theme="@style/Theme.TweetCrack"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TwitterLogin"
+            android:exported="false" />
+        <activity
             android:name=".Home"
             android:exported="false" />
         <activity
@@ -34,8 +37,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

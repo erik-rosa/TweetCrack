@@ -48,7 +48,6 @@ import org.w3c.dom.Text;
 
 public class GameScreen extends AppCompatActivity {
     //    MyRunnableGetQuery myRunnableQuery = new MyRunnableGetQuery();
-    RequestQueue queue;
     Tweet h;
     MyRunnable myRunnable = new MyRunnable(10);
     List<Button> options = new ArrayList<Button>();
@@ -61,7 +60,6 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
-        queue = Volley.newRequestQueue(GameScreen.this);
         question = (TextView) findViewById(R.id.question);
         score = findViewById(R.id.score);
         score.setText(String.valueOf(gameScore));
@@ -78,7 +76,7 @@ public class GameScreen extends AppCompatActivity {
             category = extras.getString("category");
         }
 
-        h = new Tweet(queue);
+        h = new Tweet(GlobalVariables.queue);
         nextRound();
         Thread t = new Thread(myRunnable);
         t.start();
