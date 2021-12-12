@@ -2,6 +2,8 @@ package com.example.tweetcrack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +53,7 @@ public class GameScreen extends AppCompatActivity {
     Tweet h;
     MyRunnable myRunnable = new MyRunnable(10);
     List<Button> options = new ArrayList<Button>();
-    TextView question, score;
+    TextView question, score,hiddenCorrectIndex;
     Button opt1, opt2, opt3, opt4;
     String category = "";
     int gameScore = 0;
@@ -61,6 +63,7 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
         question = (TextView) findViewById(R.id.question);
+        hiddenCorrectIndex = (TextView) findViewById(R.id.hidden);
         score = findViewById(R.id.score);
         score.setText(String.valueOf(gameScore));
         opt1 = (Button) findViewById(R.id.opt1);
@@ -91,15 +94,30 @@ public class GameScreen extends AppCompatActivity {
 
     public void correctAnswer() {
         gameScore += 1;
-        score.setText(String.valueOf(gameScore));
-        nextRound();
+        if( gameScore == 5){
+            Intent my_intent = new Intent(getBaseContext(),youWin.class);
+            startActivity(my_intent);
+        }else {
+            score.setText(String.valueOf(gameScore));
+            nextRound();
+        }
+
     }
 
+
     public void nextRound() { // gets new tweets and rearranges the order of the correct and incorrect buttons
-        int correctIndex = (int) (Math.random() * ((3) + 1));
+        h.GetRoundSetUp(category,options,question,hiddenCorrectIndex);
+        int correctIndex;
+        try{
+            correctIndex = Integer.valueOf((String) hiddenCorrectIndex.getText());
+        }catch(Exception e){
+            correctIndex = -5;
+        }
+
+//        int correctIndex = (int) (Math.random() * ((3) + 1));
         for (int i = 0; i < 4; i++) {
             if (i == correctIndex) {
-                h.GetAnswerFromList(category, options.get(i), question);
+                options.get(i).setBackgroundColor(Color.parseColor("#0021A5"));
                 options.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -107,7 +125,7 @@ public class GameScreen extends AppCompatActivity {
                     }
                 });
             } else {
-                h.GetOptionFromList(category, options.get(i));
+                options.get(i).setBackgroundColor(Color.parseColor("#FF6200EE"));
                 options.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

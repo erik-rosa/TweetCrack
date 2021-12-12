@@ -4,38 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategorySelect">
+    android:onClick="onCategoryPressed"
+    tools:context=".youWin">
 
-    <Button
-        android:id="@+id/button4"
+    <TextView
+        android:id="@+id/win"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onSportsPressed"
-        android:text="NBA"
+        android:layout_marginTop="100dp"
+        android:text="YOU WIN!!!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onNFLPressed"
-        android:text="NFL"
+        android:layout_marginTop="100dp"
+        android:onClick="onCategoryPressed"
+        android:text="CATEGORY SELECT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onCelebsNewsPressed"
-        android:text="CELEBRITIES"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/win" />
 </androidx.constraintlayout.widget.ConstraintLayout>
