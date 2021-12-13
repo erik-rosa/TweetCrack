@@ -22,13 +22,17 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.Random;
+
 
 import static com.example.tweetcrack.Hidden.BEARER_TOKEN;
+import static com.example.tweetcrack.Hidden.USER;
 
 import androidx.core.widget.TextViewOnReceiveContentListener;
 
@@ -294,6 +298,111 @@ public class Tweet {
 
     }
 
+    public void getFriendTweet(String listName, List<Button> options, TextView question,TextView correctIndexView) {
 
+        isRunning = true;
+        Random rand = new Random();
+        //GameOption result = new GameOption("null","null");
+        new Thread(() -> {
+            //List<String> users = new ArrayList<>();
+            Stack<String> users = new Stack<>();
+            Stack<String> tweets = new Stack<>();
+            String[] details = USER.split("&");
+            String username = details[3].substring(details[3].indexOf("=") + 1);
+            String getFriendsUrl = "https://api.twitter.com/1.1/friends/ids.json?screen_name=" + username;
+
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, getFriendsUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            try {
+                                JSONObject obj = new JSONObject(response);
+                                JSONArray friendsJson = obj.getJSONArray("ids");
+
+                                int randomFriend = rand.nextInt(friendsJson.length());
+
+                                    String getTweetsUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=" + String.valueOf((friendsJson.getInt(randomFriend))) + "&count=10";
+                                    StringRequest stringRequest = new StringRequest(Request.Method.GET, getTweetsUrl,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    try {
+                                                        JSONArray friendTweets = new JSONArray(response);
+
+                                                        while(users.size() != 4){
+                                                            int userIndex = rand.nextInt(friendsJson.length());
+                                                            String author = String.valueOf(friendsJson.getInt(userIndex));
+                                                            author = "@" + author;
+                                                            if(!users.contains(author)) {
+                                                                users.add(author);
+                                                            }
+                                                        }
+                                                        int tweetIndex = rand.nextInt(friendTweets.length());
+                                                        String tweetText = (String) friendTweets.getJSONObject(tweetIndex).get("text");
+                                                        tweets.add(tweetText);
+                                                        int correctIndex = rand.nextInt(4);
+                                                        for (int i = 0; i < 4; i++) {
+                                                            if (i == correctIndex) {
+                                                                correctIndexView.setText(String.valueOf(i));
+                                                                String aut = users.pop();
+                                                                String text = tweets.pop();
+                                                                options.get(i).setText(aut);
+                                                                question.setText(text);
+
+                                                            } else {
+                                                                String aut = users.pop();
+                                                                options.get(i).setText(aut);
+                                                            }
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+                                                }
+                                            }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.d("GetOptionFromListERROR", error.toString());
+                                        }
+                                    }) {
+
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put("Authorization", "Bearer " + BEARER_TOKEN);
+                                            return params;
+                                        }
+                                    };
+                                    queue.add(stringRequest);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            isRunning = false;
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("GetOptionFromListERROR", error.toString());
+                }
+            }) {
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Bearer " + BEARER_TOKEN);
+                    return params;
+                }
+            };
+
+// Add the request to the RequestQueue.
+            queue.add(stringRequest);
+
+        }).start();
+
+    }
 }
 

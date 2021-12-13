@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         GlobalVariables.loggedIn = false;
+        USER = "";
+
         GlobalVariables.queue = Volley.newRequestQueue(MainActivity.this);
         final TextView textView = (TextView) findViewById(R.id.textView);
 
@@ -77,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
         t.start();
     }
 
+    protected void onResume () {
+        super.onResume();
+        GlobalVariables.loggedIn = false;
+        USER = "";
+    }
     public void quickPlayClick(View view) {
         Intent my_intent = new Intent(getBaseContext(), Home.class);
         startActivity(my_intent);

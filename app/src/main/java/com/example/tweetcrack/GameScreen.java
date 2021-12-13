@@ -42,6 +42,7 @@ import static com.example.tweetcrack.Hidden.JTWITTER_OAUTH_KEY;
 import static com.example.tweetcrack.Hidden.JTWITTER_OAUTH_SECRET;
 import static com.example.tweetcrack.Hidden.ACCESS_TOKEN;
 import static com.example.tweetcrack.Hidden.TOKEN_SECRET;
+import static com.example.tweetcrack.Hidden.USER;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -87,12 +88,14 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void incorrectAnswer() {
+        Log.d("---------------------- CATEGORY IS", category);
         gameScore -= 1;
         score.setText(String.valueOf(gameScore));
         nextRound();
     }
 
     public void correctAnswer() {
+        Log.d("---------------------- CATEGORY IS", category);
         gameScore += 1;
         if( gameScore == 5){
             Intent my_intent = new Intent(getBaseContext(),youWin.class);
@@ -106,7 +109,12 @@ public class GameScreen extends AppCompatActivity {
 
 
     public void nextRound() { // gets new tweets and rearranges the order of the correct and incorrect buttons
-        h.GetRoundSetUp(category,options,question,hiddenCorrectIndex);
+
+        if (category.equals("friends")) {
+            h.getFriendTweet(category,options,question,hiddenCorrectIndex);
+        } else {
+            h.GetRoundSetUp(category,options,question,hiddenCorrectIndex);
+        }
         int correctIndex;
         try{
             correctIndex = Integer.valueOf((String) hiddenCorrectIndex.getText());
