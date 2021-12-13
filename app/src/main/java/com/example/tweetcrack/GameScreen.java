@@ -57,7 +57,9 @@ public class GameScreen extends AppCompatActivity {
     TextView question, score,hiddenCorrectIndex;
     Button opt1, opt2, opt3, opt4;
     String category = "";
+    String categoryName = "";
     int gameScore = 0;
+    int numberOfQuestions = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class GameScreen extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras.get("category") != null) {
             category = extras.getString("category");
+            categoryName = extras.getString("categoryName");
         }
 
         h = new Tweet(GlobalVariables.queue);
@@ -90,14 +93,20 @@ public class GameScreen extends AppCompatActivity {
     public void incorrectAnswer() {
         Log.d("---------------------- CATEGORY IS", category);
         gameScore -= 1;
+        if(gameScore > 0)
+            gameScore -= 1;
         score.setText(String.valueOf(gameScore));
+        numberOfQuestions ++;
         nextRound();
     }
 
     public void correctAnswer() {
         Log.d("---------------------- CATEGORY IS", category);
         gameScore += 1;
+        numberOfQuestions ++;
         if( gameScore == 5){
+            GlobalVariables.gameState.completeGame(gameScore, numberOfQuestions, category);
+            finish();
             Intent my_intent = new Intent(getBaseContext(),youWin.class);
             startActivity(my_intent);
         }else {
@@ -110,17 +119,17 @@ public class GameScreen extends AppCompatActivity {
 
     public void nextRound() { // gets new tweets and rearranges the order of the correct and incorrect buttons
 
+        int correctIndex = (int) (Math.random() * ((3) + 1));
         if (category.equals("friends")) {
             h.getFriendTweet(category,options,question,hiddenCorrectIndex);
         } else {
             h.GetRoundSetUp(category,options,question,hiddenCorrectIndex);
         }
-        int correctIndex;
-        try{
-            correctIndex = Integer.valueOf((String) hiddenCorrectIndex.getText());
-        }catch(Exception e){
-            correctIndex = -5;
-        }
+//        try{
+//            correctIndex = Integer.valueOf((String) hiddenCorrectIndex.getText());
+//        }catch(Exception e){
+//            correctIndex = -5;
+//        }
 
 //        int correctIndex = (int) (Math.random() * ((3) + 1));
         for (int i = 0; i < 4; i++) {

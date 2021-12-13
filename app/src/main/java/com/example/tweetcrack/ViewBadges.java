@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class ViewBadges extends AppCompatActivity {
 
     @Override
@@ -14,24 +12,32 @@ public class ViewBadges extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_badges);
 
-        TextView sportsHS = findViewById(R.id.sportsHS);
-        TextView usnewsHS = findViewById(R.id.usnewsHS);
-        TextView worldnewsHS = findViewById(R.id.worldnewsHS);
+        TextView sportsHS = findViewById(R.id.NFLHS);
+        TextView usnewsHS = findViewById(R.id.USCelebHS);
+        TextView worldnewsHS = findViewById(R.id.NBAHS);
+        TextView FastFoodHS = findViewById(R.id.FastFoodHS);
+        TextView ContentCreatorHS = findViewById(R.id.ContentCreatorHS);
 
-        TextView sportsTOT = findViewById(R.id.sportsTOT);
-        TextView usnewsTOT = findViewById(R.id.usnewsTOT);
-        TextView worldnewsTOT = findViewById(R.id.worldnewsTOT);
+        TextView sportsTOT = findViewById(R.id.NFLTOT);
+        TextView usnewsTOT = findViewById(R.id.USCelebTOT);
+        TextView worldnewsTOT = findViewById(R.id.NBATOT);
+        TextView FastFoodTOT = findViewById(R.id.FastFoodTOT);
+        TextView ContentCreatorTOT = findViewById(R.id.ContentCreatorTOT);
 
         TextView miniHS = findViewById(R.id.miniHS);
         TextView miniTOT = findViewById(R.id.miniTOT);
 
-        sportsHS.setText("Sports High Score: " + GlobalVariables.gameState.getHighScore("sports"));
-        usnewsHS.setText("US News High Score: " + GlobalVariables.gameState.getHighScore("usnews"));
-        worldnewsHS.setText("World News High Score: " + GlobalVariables.gameState.getHighScore("worldnews"));
+        sportsHS.setText("NFL Players Questions to Complete: " + GlobalVariables.gameState.getHighScore("NFL Players"));
+        usnewsHS.setText("US Celebs Questions to Complete: " + GlobalVariables.gameState.getHighScore("US Celebs"));
+        worldnewsHS.setText("NBA Players Questions to Complete: " + GlobalVariables.gameState.getHighScore("NBA Players"));
+        FastFoodHS.setText("Fast Food Companies Questions to Complete: " + GlobalVariables.gameState.getHighScore("Fast Food Companies"));
+        ContentCreatorHS.setText("Content Creators Questions to Complete  : " + GlobalVariables.gameState.getHighScore("Content Creators"));
 
-        sportsTOT.setText("Sports Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("sports"));
-        usnewsTOT.setText("US News Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("usnews"));
-        worldnewsTOT.setText("World News Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("worldnews"));
+        sportsTOT.setText("NFL Players Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("NFL Players"));
+        usnewsTOT.setText("US Celebs Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("US Celebs"));
+        worldnewsTOT.setText("NBA Players Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("NBA Players"));
+        FastFoodTOT.setText("Fast Food Companies Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("Fast Food Companies"));
+        ContentCreatorTOT.setText("Content Creators Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("Content Creators"));
 
         miniHS.setText("Mini Game High Score: " + GlobalVariables.gameState.getHighScore("mini"));
         miniTOT.setText("Mini Game Total Games: " + GlobalVariables.gameState.getTotalGamesPlayed("mini"));
