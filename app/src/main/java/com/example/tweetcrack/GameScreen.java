@@ -121,9 +121,9 @@ public class GameScreen extends AppCompatActivity {
 
         int correctIndex = (int) (Math.random() * ((3) + 1));
         if (category.equals("friends")) {
-            h.getFriendTweet(category,options,question,hiddenCorrectIndex);
+            h.getFriendTweet(category,options,question,correctIndex);
         } else {
-            h.GetRoundSetUp(category,options,question,hiddenCorrectIndex);
+            h.GetRoundSetUp(category,options,question,correctIndex);
         }
 //        try{
 //            correctIndex = Integer.valueOf((String) hiddenCorrectIndex.getText());

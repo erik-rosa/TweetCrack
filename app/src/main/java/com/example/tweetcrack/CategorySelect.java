@@ -20,7 +20,7 @@ public class CategorySelect extends AppCompatActivity {
         if (GlobalVariables.loggedIn && !USER.isEmpty()) {
             String[] details = USER.split("&");
             String username = details[3].substring(details[3].indexOf("=") + 1);
-            Button friendsCategoryButton = (Button) findViewById(R.id.button7);
+            Button friendsCategoryButton = (Button) findViewById(R.id.button8);
             friendsCategoryButton.setVisibility(View.VISIBLE);
         }
     }

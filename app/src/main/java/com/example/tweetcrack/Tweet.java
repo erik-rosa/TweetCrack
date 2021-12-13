@@ -299,7 +299,7 @@ public class Tweet {
 
     }
 
-    public void getFriendTweet(String listName, List<Button> options, TextView question,TextView correctIndexView) {
+    public void getFriendTweet(String listName, List<Button> options, TextView question,int correctIndex) {
 
         isRunning = true;
         Random rand = new Random();
@@ -346,7 +346,6 @@ public class Tweet {
                                                         int correctIndex = rand.nextInt(4);
                                                         for (int i = 0; i < 4; i++) {
                                                             if (i == correctIndex) {
-                                                                correctIndexView.setText(String.valueOf(i));
                                                                 String aut = users.pop();
                                                                 String text = tweets.pop();
                                                                 options.get(i).setText(aut);
