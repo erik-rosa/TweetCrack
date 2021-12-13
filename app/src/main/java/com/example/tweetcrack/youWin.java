@@ -15,7 +15,8 @@ public class youWin extends AppCompatActivity {
     }
 
     public void onCategoryPressed(View view) {
-        Intent my_intent = new Intent(getBaseContext(),CategorySelect.class);
-        startActivity(my_intent);
+        finish();
+//        Intent my_intent = new Intent(getBaseContext(),CategorySelect.class);
+//        startActivity(my_intent);
     }
 }

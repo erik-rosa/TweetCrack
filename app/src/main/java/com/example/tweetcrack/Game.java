@@ -19,10 +19,10 @@ public class Game {
     public int getTotalGamesPlayed(String category){
         return mPrefs.getInt("gamesPlayed" + category, 0);
     }
-    public void completeGame(int score, String category){
+    public void completeGame(int score, int totNumberQuestions, String category){
         int prevHighScore = mPrefs.getInt("highScore" + category, 0);
-        if(prevHighScore < score)
-            mEditor.putInt("highScore" + category, score).commit();
-        mEditor.putInt("gamesPlayed" + category, mPrefs.getInt("gamesPlayed" + category, 0)).commit();
+        if(prevHighScore > totNumberQuestions || prevHighScore == 0)
+            mEditor.putInt("highScore" + category, totNumberQuestions).commit();
+        mEditor.putInt("gamesPlayed" + category, mPrefs.getInt("gamesPlayed" + category, 0) +1).commit();
     }
 }
