@@ -6,70 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".CategorySelect">
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
-        android:onClick="onFriendsPressed"
-        android:text="FRIENDS"
-        android:visibility="invisible"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="415dp"
+        android:layout_height="850dp"
+        android:layout_marginTop="-40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/categories_bg" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onSportsPressed"
-        android:text="NBA"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onNFLPressed"
-        android:text="NFL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onCelebsNewsPressed"
-        android:text="CELEBRITIES"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="186dp"
+                android:layout_height="82dp"
+                android:layout_marginTop="20dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@drawable/nba"
+                android:onClick="onSportsPressed"
+                android:text="NBA" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onFastFoodPressed"
-        android:text="Fast Food Companies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="186dp"
+                android:layout_height="81dp"
+                android:layout_marginTop="32dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@drawable/nfl"
+                android:gravity="center"
+                android:onClick="onNFLPressed"
+                android:text="NFL" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="onContentCreatorsPressed"
-        android:text="Content Creators"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="169dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="36dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@drawable/content_creators"
+                android:gravity="center"
+                android:onClick="onContentCreatorsPressed"
+                android:text="Content Creators" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="183dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="28dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@drawable/celebrities"
+                android:gravity="center"
+                android:onClick="onCelebsNewsPressed"
+                android:text="CELEBRITIES" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="177dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="36dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foreground="@drawable/fast_food_companies"
+                android:gravity="center"
+                android:onClick="onFastFoodPressed"
+                android:text="Fast Food Companies" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="186dp"
+                android:layout_height="81dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/tweetcrack_button"
+                android:fontFamily="@font/patrick_hand"
+                android:gravity="center"
+                android:onClick="onFriendsPressed"
+                android:text="FRIENDS"
+                android:textColor="#5BB6DC"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".TwitterLogin">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="415dp"
+        android:layout_height="820dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/falling_tweets_bg" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
@@ -13,7 +22,9 @@
         android:layout_marginTop="192dp"
         android:text="TweetCrack"
         android:textAlignment="center"
+        android:textColor="#2196F3"
         android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,4 +63,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

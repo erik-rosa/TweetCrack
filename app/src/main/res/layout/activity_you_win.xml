@@ -7,24 +7,40 @@
     android:onClick="onCategoryPressed"
     tools:context=".youWin">
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="452dp"
+        android:layout_height="745dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/you_win" />
+
     <TextView
         android:id="@+id/win"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="YOU WIN!!!"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="211dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="260dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:foreground="@drawable/back"
         android:onClick="onCategoryPressed"
         android:text="CATEGORY SELECT"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/win" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

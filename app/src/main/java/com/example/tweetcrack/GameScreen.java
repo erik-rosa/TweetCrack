@@ -92,7 +92,6 @@ public class GameScreen extends AppCompatActivity {
 
     public void incorrectAnswer() {
         Log.d("---------------------- CATEGORY IS", category);
-        gameScore -= 1;
         if(gameScore > 0)
             gameScore -= 1;
         score.setText(String.valueOf(gameScore));
@@ -134,7 +133,7 @@ public class GameScreen extends AppCompatActivity {
 //        int correctIndex = (int) (Math.random() * ((3) + 1));
         for (int i = 0; i < 4; i++) {
             if (i == correctIndex) {
-                options.get(i).setBackgroundColor(Color.parseColor("#0021A5"));
+//                options.get(i).setBackgroundColor(Color.parseColor("#0021A5"));
                 options.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -142,7 +141,7 @@ public class GameScreen extends AppCompatActivity {
                     }
                 });
             } else {
-                options.get(i).setBackgroundColor(Color.parseColor("#FF6200EE"));
+//                options.get(i).setBackgroundColor(Color.parseColor("#FF6200EE"));
                 options.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

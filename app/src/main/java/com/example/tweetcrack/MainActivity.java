@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        GlobalVariables.friends = null;
         SharedPreferences mPrefs = getSharedPreferences("GameState", 0);
         GlobalVariables.gameState =  new Game(mPrefs);
 
