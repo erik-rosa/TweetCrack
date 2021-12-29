@@ -27,4 +27,9 @@ public class Home extends AppCompatActivity {
         Intent my_intent = new Intent(getBaseContext(),CategorySelect.class);
         startActivity(my_intent);
     }
+
+    public void settingsClick(View view){
+        Intent my_intent = new Intent(getBaseContext(),Settings.class);
+        startActivity(my_intent);
+    }
 }

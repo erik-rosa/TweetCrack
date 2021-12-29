@@ -20,7 +20,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="176dp"
         android:text="TweetCrack"
         android:textAlignment="center"
         android:textColor="#2196F3"
@@ -33,8 +33,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="257dp"
-        android:layout_height="153dp"
+        android:layout_width="161dp"
+        android:layout_height="90dp"
         android:layout_marginTop="30dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
@@ -47,20 +47,22 @@
 
     <Button
         android:id="@+id/QuickPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="161dp"
+        android:layout_height="90dp"
         android:layout_marginTop="30dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:foreground="@drawable/badges_button"
         android:onClick="onViewBadgesPressed"
         android:text="View Badges"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/twitterLogin"
-        android:layout_width="255dp"
-        android:layout_height="146dp"
+        android:layout_width="161dp"
+        android:layout_height="90dp"
         android:layout_marginTop="30dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
@@ -70,5 +72,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuickPlay" />
+
+    <Button
+        android:id="@+id/twitterLogin2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:foreground="@drawable/settings_button"
+        android:onClick="settingsClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ViewBadges">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="461dp"
+        android:layout_height="937dp"
+        android:layout_marginTop="-20dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/falling_tweets_bg" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Badges"
+        android:textAlignment="center"
+        android:textColor="#2196F3"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="416dp"
+        android:layout_height="650dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,12 +48,19 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/NFLHS"
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView14"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
+
             </TableRow>
 
             <TableRow
@@ -37,11 +69,58 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/NFLTOT"
+                    android:id="@+id/NFL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="0dp"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                    <TextView
+                        android:id="@+id/NFLHS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+
+                    <TextView
+                        android:id="@+id/NFLTOT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
+
             </TableRow>
 
             <TableRow
@@ -50,11 +129,54 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/USCelebHS"
+                    android:id="@+id/USCeleb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/USCelebHS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+
+                    <TextView
+                        android:id="@+id/USCelebTOT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
 
             </TableRow>
 
@@ -64,11 +186,12 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/USCelebTOT"
+                    android:id="@+id/NBA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
             </TableRow>
 
             <TableRow
@@ -76,39 +199,28 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/NBAHS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
-            </TableRow>
+                    android:orientation="horizontal">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                    <TextView
+                        android:id="@+id/NBAHS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
 
-                <TextView
-                    android:id="@+id/NBATOT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="TextView" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/FastFoodHS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="TextView" />
+                    <TextView
+                        android:id="@+id/NBATOT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+                </LinearLayout>
 
             </TableRow>
 
@@ -117,12 +229,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/FastFoodTOT"
+                <ImageView
+                    android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
 
             </TableRow>
 
@@ -132,11 +243,54 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/ContentCreatorHS"
+                    android:id="@+id/FastFood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/FastFoodHS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+
+                    <TextView
+                        android:id="@+id/FastFoodTOT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
 
             </TableRow>
 
@@ -146,11 +300,54 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/ContentCreatorTOT"
+                    android:id="@+id/ContentCreator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ContentCreatorHS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+
+                    <TextView
+                        android:id="@+id/ContentCreatorTOT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    app:srcCompat="@drawable/shelf" />
 
             </TableRow>
 
@@ -164,7 +361,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
             </TableRow>
 
             <TableRow
@@ -177,7 +375,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/text" />
             </TableRow>
 
         </TableLayout>

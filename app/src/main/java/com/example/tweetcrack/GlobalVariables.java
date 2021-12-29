@@ -11,4 +11,5 @@ public class GlobalVariables {
     public static MyRunnable myRunnable;
     public static RequestQueue queue;
     public static JSONArray friends;
+    public static boolean soundOn;
 }

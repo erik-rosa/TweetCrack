@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import android.media.MediaPlayer;
+
 //import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpPost;
 
 //import org.apache.http.params.HttpParams;
@@ -61,6 +63,12 @@ public class GameScreen extends AppCompatActivity {
     int gameScore = 0;
     int numberOfQuestions = 0;
 
+    MediaPlayer correctSound;
+    MediaPlayer incorrectSound;
+    MediaPlayer winSound;
+    int correctQuestions = 0;
+    int incorrectQuestions =0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +85,10 @@ public class GameScreen extends AppCompatActivity {
         options.add(opt2);
         options.add(opt3);
         options.add(opt4);
+
+        correctSound = MediaPlayer.create(GameScreen.this, R.raw.correct);
+        incorrectSound = MediaPlayer.create(GameScreen.this, R.raw.incorrect);
+        winSound = MediaPlayer.create(GameScreen.this, R.raw.win);
         Bundle extras = getIntent().getExtras();
         if (extras.get("category") != null) {
             category = extras.getString("category");
@@ -91,6 +103,9 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void incorrectAnswer() {
+        if(GlobalVariables.soundOn)
+            incorrectSound.start();
+        incorrectQuestions ++;
         Log.d("---------------------- CATEGORY IS", category);
         if(gameScore > 0)
             gameScore -= 1;
@@ -100,14 +115,19 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void correctAnswer() {
+        if(GlobalVariables.soundOn)
+            correctSound.start();
+        correctQuestions ++;
         Log.d("---------------------- CATEGORY IS", category);
         gameScore += 1;
         numberOfQuestions ++;
         if( gameScore == 5){
-            GlobalVariables.gameState.completeGame(gameScore, numberOfQuestions, category);
+            GlobalVariables.gameState.completeGame(gameScore, numberOfQuestions, correctQuestions, incorrectQuestions, categoryName);
             finish();
             Intent my_intent = new Intent(getBaseContext(),youWin.class);
             startActivity(my_intent);
+            if(GlobalVariables.soundOn)
+                winSound.start();
         }else {
             score.setText(String.valueOf(gameScore));
             nextRound();

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        GlobalVariables.soundOn = true;
+
         GlobalVariables.friends = null;
         SharedPreferences mPrefs = getSharedPreferences("GameState", 0);
         GlobalVariables.gameState =  new Game(mPrefs);
-
 
         GlobalVariables.loggedIn = false;
         USER = "";
